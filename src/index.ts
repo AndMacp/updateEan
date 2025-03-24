@@ -1,20 +1,12 @@
-// import type { Core } from '@strapi/strapi';
+import type { Core } from '@strapi/strapi'
+import { localeSwitchLogger } from './utils/document-service-middlewares'
 
 export default {
-  /**
-   * An asynchronous register function that runs before
-   * your application is initialized.
-   *
-   * This gives you an opportunity to extend code.
-   */
-  register(/* { strapi }: { strapi: Core.Strapi } */) {},
-
-  /**
-   * An asynchronous bootstrap function that runs before
-   * your application gets started.
-   *
-   * This gives you an opportunity to set up your data model,
-   * run jobs, or perform some special logic.
-   */
-  bootstrap(/* { strapi }: { strapi: Core.Strapi } */) {},
-};
+  register({ strapi }: { strapi: Core.Strapi }) {
+    const middlewares = [localeSwitchLogger]
+    middlewares.forEach((middleware) => {
+      strapi.documents.use(middleware())
+    })
+  },
+  bootstrap() {},
+}
