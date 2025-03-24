@@ -11,13 +11,12 @@ const localeSwitchLogger = () => {
     if (context.action === 'update' && locale && isDraft) {
       const eanCode = await strapi.service('api::test.test').getSavedEan()
       if (eanCode) {
-        context.params.data.ean = eanCode // <-- This must happen BEFORE next()
+        context.params.data.ean = eanCode
       }
     }
 
-    const result = await next() // Perform the update with modified payload
+    const result = await next()
 
-    // Optionally, after creation/localization, save the EAN
     if (
       context.action === 'create' ||
       context.action === 'createLocalization'
