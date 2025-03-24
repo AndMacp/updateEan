@@ -18,7 +18,10 @@ const localeSwitchLogger = () => {
     const result = await next() // Perform the update with modified payload
 
     // Optionally, after creation/localization, save the EAN
-    if (['create', 'createLocalization'].includes(context.action)) {
+    if (
+      context.action === 'create' ||
+      context.action === 'createLocalization'
+    ) {
       await strapi.service('api::test.test').saveEanCode(result)
     }
 
