@@ -1,5 +1,8 @@
+import { eanHelper } from './ean-helper-functions'
+
 const localeSwitchLogger = () => {
   return async (context, next) => {
+    const uid = context.uid
     const locale =
       context.params?.locale ||
       context.request?.query?.locale ||
@@ -9,9 +12,13 @@ const localeSwitchLogger = () => {
 
     // Inject EAN before update happens
     if (context.action === 'update' && locale && isDraft) {
-      const eanCode = await strapi.service('api::test.test').getSavedEan()
-      if (eanCode) {
-        context.params.data.ean = eanCode
+      const fields = eanHelper.getFieldsArray()
+      if (fields) {
+        fields.forEach((field) => {
+          const key = Object.keys(field)[0]
+          const value = field[key]
+          context.params.data[key] = value
+        })
       }
     }
 
@@ -21,7 +28,7 @@ const localeSwitchLogger = () => {
       context.action === 'create' ||
       context.action === 'createLocalization'
     ) {
-      await strapi.service('api::test.test').saveEanCode(result)
+      eanHelper.saveUnlocalizedFields(result, uid)
     }
 
     return result

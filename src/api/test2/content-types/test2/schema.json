@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "test2s",
+  "info": {
+    "singularName": "test2",
+    "pluralName": "test2s",
+    "displayName": "test2"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "idnumber": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "docnumber": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "ean": {
+      "type": "string"
+    }
+  }
+}
