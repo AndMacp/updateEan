@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "test2s",
+  "collectionName": "products",
   "info": {
-    "singularName": "test2",
-    "pluralName": "test2s",
-    "displayName": "test2"
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "product"
   },
   "options": {
     "draftAndPublish": true
@@ -23,7 +23,15 @@
         }
       }
     },
-    "idnumber": {
+    "description": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "short_description": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -31,15 +39,16 @@
         }
       }
     },
-    "docnumber": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
-    },
     "ean": {
+      "type": "string"
+    },
+    "price": {
+      "type": "string"
+    },
+    "stock": {
+      "type": "string"
+    },
+    "weight": {
       "type": "string"
     }
   }

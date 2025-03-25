@@ -1,4 +1,4 @@
-import { eanHelper } from './ean-helper-functions'
+import { eanHelper } from './locale-helper-functions'
 
 const localeSwitchLogger = () => {
   return async (context, next) => {
